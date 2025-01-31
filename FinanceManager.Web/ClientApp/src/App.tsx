@@ -1,8 +1,24 @@
 import { AppShell, Burger } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
+import { useQuery } from '@tanstack/react-query'
+import { AuthenticationPage } from 'src/components/auth/AuthenticationPage'
+import { useJwt } from 'src/hooks/useJwt'
+import { testQueryOptions } from 'src/queries/testQueries'
 
 function App() {
   const [opened, { toggle }] = useDisclosure()
+  const jwt = useJwt()
+
+  const { data: testData, error } = useQuery({
+    ...testQueryOptions(),
+    enabled: jwt != null,
+  })
+
+  if (jwt == null) {
+    return <AuthenticationPage />
+  }
+
+  console.log(error)
 
   return (
     <AppShell
@@ -21,7 +37,7 @@ function App() {
 
       <AppShell.Navbar p="md">Navbar</AppShell.Navbar>
 
-      <AppShell.Main>Main</AppShell.Main>
+      <AppShell.Main>{testData}</AppShell.Main>
     </AppShell>
   )
 }

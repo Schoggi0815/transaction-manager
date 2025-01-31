@@ -9,5 +9,17 @@ export default defineConfig({
       src: '/src',
     },
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5053',
+        changeOrigin: true,
+      },
+      '/swagger': {
+        target: 'http://localhost:5053',
+        changeOrigin: true,
+      },
+    },
+  },
   plugins: [react(), tailwindcss()],
 })
