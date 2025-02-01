@@ -63,7 +63,8 @@ export const useLogin = () => {
 
       try {
         key = await get(await startLogin())
-      } catch {
+      } catch (e) {
+        console.error(e)
         throw new Error('No passkey selected')
       }
 

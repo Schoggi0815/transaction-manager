@@ -49,7 +49,7 @@ public class AuthController(
 
         var result = await registrationCeremonyService.BeginCeremonyAsync(HttpContext,
             new BeginRegistrationCeremonyRequest(
-                origins: new RegistrationCeremonyOriginParameters(["http://localhost:5173"]),
+                origins: new RegistrationCeremonyOriginParameters(["http://localhost:4321"]),
                 topOrigins: null,
                 rpDisplayName: "Finance Manager",
                 user: new PublicKeyCredentialUserEntity(
@@ -155,7 +155,7 @@ public class AuthController(
         var result = await authenticationCeremonyService.BeginCeremonyAsync(
             httpContext: HttpContext,
             request: new BeginAuthenticationCeremonyRequest(
-                origins: new AuthenticationCeremonyOriginParameters(["http://localhost:5173"]),
+                origins: new AuthenticationCeremonyOriginParameters(["http://localhost:4321"]),
                 topOrigins: null,
                 userHandle: null,
                 challengeSize: 32,

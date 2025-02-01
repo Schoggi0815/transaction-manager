@@ -58,3 +58,11 @@ export const useJwt = () => {
 
   return jwt
 }
+
+export const useLogOut = () => {
+  return useCallback(() => {
+    localStorage.removeItem(jwtKey)
+    localStorage.removeItem(refreshTokenKey)
+    JwtStore.setState(() => undefined)
+  }, [])
+}
